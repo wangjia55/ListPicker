@@ -214,6 +214,9 @@ public class LinearPickerLayout extends LinearLayout {
     }
 
 
+    /**
+     * 对越界的数据进行限制
+     */
     private int limitTranslateY(int translate) {
         if (translate <= mMinTranslate) {
             translate = mMinTranslate;
@@ -226,6 +229,9 @@ public class LinearPickerLayout extends LinearLayout {
         return translate;
     }
 
+    /**
+     * 计算偏移量，确保每次滑动都可以对准中心位置
+     */
     private int calculateTranslate(int translate) {
         translate = limitTranslateY(translate);
 
@@ -251,11 +257,17 @@ public class LinearPickerLayout extends LinearLayout {
     }
 
 
+    /**
+     * 传入的用户列表
+     */
     public void setUserList(List<Users> mUserList) {
         this.mUserList = mUserList;
     }
 
 
+    /**
+     * 获取屏幕的高
+     */
     private int getScreenHeight() {
         WindowManager manager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics metrics = new DisplayMetrics();
