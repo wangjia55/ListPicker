@@ -1,0 +1,2 @@
+# ListPicker
+这是一个选择控件，类似FancyCoverFlow的垂直效果，会始终让当中间的View剧中并且放大显示
