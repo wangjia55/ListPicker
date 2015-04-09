@@ -1,0 +1,11 @@
+<com.jacob.listpicker.view.LinearPickerLayout
+    android:id="@+id/linear_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="match_parent"
+    android:layout_centerVertical="true"
+    android:background="#e41e1d1e"
+    android:orientation="vertical">
+
+
+</com.jacob.listpicker.view.LinearPickerLayout>
