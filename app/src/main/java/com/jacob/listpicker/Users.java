@@ -9,8 +9,9 @@ package com.jacob.listpicker;
 public class Users {
 
     private String name;
-
     private int avatar;
+
+    public Users(){}
 
     public Users(String name, int avatar) {
         this.name = name;

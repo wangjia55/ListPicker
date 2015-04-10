@@ -4,12 +4,14 @@
                 android:layout_height="match_parent"
                 tools:context=".MainActivity">
 
-    <com.jacob.listpicker.view.RoundImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/round_image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_avatar1"/>
+        app:border_width="1.5dp"
+        app:border_color="#deffe200"/>
 
     <TextView
         android:id="@+id/text_view"
@@ -17,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/round_image_view"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
         android:textColor="#ffffff"
         android:textSize="15sp"/>
 

@@ -2,8 +2,9 @@ package com.jacob.listpicker;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
-import com.jacob.listpicker.view.LinearPickerLayout;
+import com.jacob.listpicker.view.ListPickerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +17,18 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
         initView();
 
-        LinearPickerLayout linearPickerLayout = (LinearPickerLayout) findViewById(R.id.linear_container);
-        linearPickerLayout.setUserList(mUserList);
+        ListPickerView listPickerView = (ListPickerView) findViewById(R.id.list_picker_view);
+        listPickerView.setItems(mUserList);
+        listPickerView.setOnListPickerListener(new ListPickerView.OnListPickerListener() {
+            @Override
+            public void onListPicker(int position) {
+                Log.e("TAG",position+"");
+            }
+        });
+
     }
 
     private void initView() {
