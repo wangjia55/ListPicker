@@ -30,30 +30,56 @@ import java.util.List;
  * Package : com.jacob.listpicker.view
  * Author : jacob
  * Date : 15-4-10
- * Description : 这个类是用来xxx
+ * Description : 这个类是带有居中显示的放大效果的列表视图
  */
 public class ListPickerView extends ScrollView {
+    /**
+     * 默认的距离中心位置的偏移的量
+     */
     public static final int DEFAULT_OFFSET = 2;
+    /**
+     * 延时时间
+     */
     public static final int DELAY = 25;
-
+    /**
+     *每个子View的高度
+     */
     private int mItemHeight;
-
+    /**
+     *每个子View的宽度
+     */
     private int mItemWidth;
-
+    /**
+     * 列表的偏移量
+     */
     private int mOffset = DEFAULT_OFFSET;
-
+    /**
+     * 绘制中心三角形的画笔
+     */
     private Paint mPaintTriangle;
-
+    /**
+     * 绘制三角形的路径
+     */
     private Path mPath;
-
+    /**
+     *当前选择的位置
+     */
     private int mSelection;
-
+    /**
+     *三角形的高度
+     */
     private int mTriangleHeight;
-
+    /**
+     * 默认显示item的个数
+     */
     private int mDisplayCount;
-
+    /**
+     *数据列表
+     */
     private List<Users> mUserList;
-
+    /**
+     * 缓存所有的视图
+     */
     private List<ViewHolder> mViewHolders;
 
     private LinearLayout mLinearContainer;
@@ -64,7 +90,13 @@ public class ListPickerView extends ScrollView {
 
     private OnListPickerListener mPickerListener;
 
+    /**
+     *放大效果的动画
+     */
     private ObjectAnimator mShowAnimator;
+    /**
+     *缩小效果的动画
+     */
     private ObjectAnimator mDisAnimator;
 
     public ListPickerView(Context context) {
@@ -138,7 +170,9 @@ public class ListPickerView extends ScrollView {
         };
         super.setBackgroundDrawable(background);
     }
-
+    /**
+     *创建绘制三角形的轨迹的path
+     */
     private Path createPath() {
         mTriangleHeight = mItemHeight / 7;
         int top = (int) ((mOffset + 0.5) * mItemHeight - mTriangleHeight);
@@ -151,6 +185,10 @@ public class ListPickerView extends ScrollView {
         return path;
     }
 
+    /**
+     *传入用户的数据，
+     * 需要注意是： 这里需要在头尾部分进行填充
+     */
     public void setItems(List<Users> userList) {
         if (mUserList == null) {
             mUserList = new ArrayList<>();
@@ -171,6 +209,9 @@ public class ListPickerView extends ScrollView {
         refreshUI();
     }
 
+    /**
+     *将子View添加到LinearLayout中
+     */
     private void addItemView() {
         int size = mUserList.size();
         for (int i = 0; i < size; i++) {
@@ -178,6 +219,9 @@ public class ListPickerView extends ScrollView {
         }
     }
 
+    /**
+     *创建子View视图
+     */
     private View createItemView(Users users) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_user_view, mLinearContainer, false);
         ViewHolder viewHolder = new ViewHolder();
@@ -204,6 +248,9 @@ public class ListPickerView extends ScrollView {
     }
 
 
+    /**
+     * 获取子View的高度
+     */
     private int getViewMeasureHeight(View view) {
         int childWidthSpec;
         int childHeightSpec;
@@ -227,12 +274,17 @@ public class ListPickerView extends ScrollView {
         return view.getMeasuredHeight();
     }
 
-
+    /**
+     *设置滑动的速度，设置为默认速度的1/3
+     */
     @Override
     public void fling(int velocityY) {
         super.fling(velocityY / 3);
     }
 
+    /**
+     *在每次滑动结束后计算滑动的位置
+     */
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
@@ -292,6 +344,9 @@ public class ListPickerView extends ScrollView {
         refreshUI();
     }
 
+    /**
+     *更新UI，这里主要是将居中显示的进行动画放大，其他位置的view进行动画缩小
+     */
     private void refreshUI() {
         int size = mLinearContainer.getChildCount();
         for (int i = 0; i < size; i++) {
@@ -312,6 +367,9 @@ public class ListPickerView extends ScrollView {
         }
     }
 
+    /**
+     *对外接口
+     */
     public interface OnListPickerListener {
         void onListPicker(int position);
     }
